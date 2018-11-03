@@ -76,19 +76,14 @@ public class FragmentSongByArtist extends Fragment {
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-//                        rl.setBackground(new BitmapDrawable(bitmap));
                     }
 
                     @Override
                     public void onBitmapFailed(Exception e, Drawable errorDrawable) {
 
                     }
-
-
-
                     @Override
                     public void onPrepareLoad(Drawable placeHolderDrawable) {
-
                     }
                 });
 
@@ -105,14 +100,11 @@ public class FragmentSongByArtist extends Fragment {
             Toast.makeText(getActivity(), getResources().getString(R.string.internet_not_conn), Toast.LENGTH_SHORT).show();
         }
 
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                if(JsonUtils.isNetworkAvailable(getActivity())) {
-                    showInter(position);
-                } else {
-                    Toast.makeText(getActivity(), getResources().getString(R.string.internet_not_conn), Toast.LENGTH_SHORT).show();
-                }
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view, position) -> {
+            if(JsonUtils.isNetworkAvailable(getActivity())) {
+                showInter(position);
+            } else {
+                Toast.makeText(getActivity(), getResources().getString(R.string.internet_not_conn), Toast.LENGTH_SHORT).show();
             }
         }));
 

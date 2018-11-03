@@ -32,15 +32,7 @@ public class ZProgressHUD extends Dialog {
     Context context;
 
     OnDialogDismiss onDialogDismiss;
-
-    public OnDialogDismiss getOnDialogDismiss() {
-        return onDialogDismiss;
-    }
-
-    public void setOnDialogDismiss(OnDialogDismiss onDialogDismiss) {
-        this.onDialogDismiss = onDialogDismiss;
-    }
-
+    
     public static ZProgressHUD getInstance(Context context) {
         if (instance == null) {
             instance = new ZProgressHUD(context);
@@ -56,10 +48,10 @@ public class ZProgressHUD extends Dialog {
         this.setCanceledOnTouchOutside(false);
         this.context = context;
         view = getLayoutInflater().inflate(R.layout.dialog_progress, null);
-        tvMessage = (TextView) view.findViewById(R.id.textview_message);
-        ivSuccess = (ImageView) view.findViewById(R.id.imageview_success);
-        ivFailure = (ImageView) view.findViewById(R.id.imageview_failure);
-        ivProgressSpinner = (ImageView) view
+        tvMessage = view.findViewById(R.id.textview_message);
+        ivSuccess = view.findViewById(R.id.imageview_success);
+        ivFailure = view.findViewById(R.id.imageview_failure);
+        ivProgressSpinner = view
                 .findViewById(R.id.imageview_progress_spinner);
 
         setSpinnerType(FADED_ROUND_SPINNER);
@@ -97,23 +89,7 @@ public class ZProgressHUD extends Dialog {
             instance = null;
         }
     }
-
-    public void dismissWithSuccess() {
-        tvMessage.setText("Success");
-        showSuccessImage();
-
-        if (onDialogDismiss != null) {
-            this.setOnDismissListener(new OnDismissListener() {
-
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    onDialogDismiss.onDismiss();
-                }
-            });
-        }
-        dismissHUD();
-    }
-
+    
     public void dismissWithSuccess(String message) {
         showSuccessImage();
         if (message != null) {
@@ -123,32 +99,11 @@ public class ZProgressHUD extends Dialog {
         }
 
         if (onDialogDismiss != null) {
-            this.setOnDismissListener(new OnDismissListener() {
-
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    onDialogDismiss.onDismiss();
-                }
-            });
+            this.setOnDismissListener(dialog -> onDialogDismiss.onDismiss());
         }
         dismissHUD();
     }
-
-    public void dismissWithFailure() {
-        showFailureImage();
-        tvMessage.setText("Failure");
-        if (onDialogDismiss != null) {
-            this.setOnDismissListener(new OnDismissListener() {
-
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    onDialogDismiss.onDismiss();
-                }
-            });
-        }
-        dismissHUD();
-    }
-
+    
     public void dismissWithFailure(String message) {
         showFailureImage();
         if (message != null) {
@@ -157,13 +112,7 @@ public class ZProgressHUD extends Dialog {
             tvMessage.setText("");
         }
         if (onDialogDismiss != null) {
-            this.setOnDismissListener(new OnDismissListener() {
-
-                @Override
-                public void onDismiss(DialogInterface dialog) {
-                    onDialogDismiss.onDismiss();
-                }
-            });
+            this.setOnDismissListener(dialog -> onDialogDismiss.onDismiss());
         }
         dismissHUD();
     }
@@ -206,18 +155,11 @@ public class ZProgressHUD extends Dialog {
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
-        ivProgressSpinner.post(new Runnable() {
-
-            @Override
-            public void run() {
-                adProgressSpinner.start();
-
-            }
-        });
+        ivProgressSpinner.post(() -> adProgressSpinner.start());
     }
 
     public interface OnDialogDismiss {
-        public void onDismiss();
+        void onDismiss();
     }
 
 }

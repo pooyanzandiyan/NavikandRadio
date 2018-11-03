@@ -26,7 +26,6 @@ import com.kdz.utils.DBHelper;
 import com.kdz.utils.JsonUtils;
 import com.kdz.utils.RecyclerItemClickListener;
 import com.kdz.utils.ZProgressHUD;
-
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
