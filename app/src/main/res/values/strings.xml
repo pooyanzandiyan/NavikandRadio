@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">رادیو نویکند</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="isRTL">false</string>
+
+
+    <!--change all this text in your language-->
+    <string name="title_activity_main">MainActivity</string>
+    <string name="menu_about">درباره ما</string>
+    <string name="error">خطا در بارگذاری</string>
+    <string name="success"></string>
+    <string name="server_no_conn">خطا, سرور جوابگو نیست</string>
+    <string name="loading">در حال بارگذاری..</string>
+    <string name="recently_played">آخرین پخش شده ها</string>
+    <string name="search">جستجو</string>
+    <string name="no_data_found">داده ای یافت نشد</string>
+    <string name="download_desti">Navikand Radio</string>
+    <string name="internet_not_conn">اتصال اینترنت وجود ندارد</string>
+    <string name="artist">خواننده</string>
+    <string name="category">دسته بندی</string>
+    <string name="magazine">مجله نویکند</string>
+    <string name="developedby">ساخته شده توسط</string>
+    <string name="home">خانه</string>
+    <string name="press_again_exit">برای خروج دوبار دکمه برگشت را لمس کنید</string>
+    <string name="categories">دسته بندی ها</string>
+    <string name="favourite">مورد علاقه</string>
+    <string name="removed_fav">حذف از لیست مورد علاقه</string>
+    <string name="added_fav">به لیست علاقه مندی ها اضافه شد</string>
+    <string name="share_song">اشتراک گذاری موزیک</string>
+    <string name="downloading">در حال دانلود</string>
+    <string name="already_download">این فایل قبلا دانلود شده است</string>
+    <string name="volume">صدا</string>
+    <string name="cannot_use_save">امکان ذخیره بدون دادن دسترسی لازم وجود ندارد</string>
+    <string name="version">نسخه</string>
+    <string name="author">برنامه نویس</string>
+    <string name="email">ایمیل</string>
+    <string name="website">وب سایت</string>
+    <string name="contact">تماس</string>
+    <string name="desc">توضیحات</string>
+    <string name="share_app">اشتراک گذاری برنامه</string>
+    <string name="downloads">دانلود ها</string>
+    <string name="no_song_selected">موزیک انتخاب نشده</string>
+    <string name="listening">این بخش از رادیو رو گوش دادی؟ برو دانلودش کن و گوش بده... خیلی خوبه</string>
+</resources>
