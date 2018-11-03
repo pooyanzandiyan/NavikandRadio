@@ -52,7 +52,7 @@ public class FragmentArtist extends Fragment {
         progressHUD.setSpinnerType(ZProgressHUD.FADED_ROUND_SPINNER);
 
         arrayList = new ArrayList<>();
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView_cat);
+        recyclerView = rootView.findViewById(R.id.recyclerView_cat);
         gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -64,27 +64,24 @@ public class FragmentArtist extends Fragment {
             Toast.makeText(getActivity(), getResources().getString(R.string.internet_not_conn), Toast.LENGTH_SHORT).show();
         }
 
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Constant.isBackStack = true;
-                Constant.backStackPage = "artist";
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view, position) -> {
+            Constant.isBackStack = true;
+            Constant.backStackPage = "artist";
 
-                FragmentManager fm = getFragmentManager();
-                FragmentSongByArtist f1 = new FragmentSongByArtist();
-                FragmentTransaction ft = fm.beginTransaction();
+            FragmentManager fm = getFragmentManager();
+            FragmentSongByArtist f1 = new FragmentSongByArtist();
+            FragmentTransaction ft = fm.beginTransaction();
 
-                Bundle bundl = new Bundle();
-                bundl.putString("artist", arrayList.get(getPosition(adapterArtist.getID(position))).getName());
-                bundl.putString("image", arrayList.get(getPosition(adapterArtist.getID(position))).getImage());
-                f1.setArguments(bundl);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.hide(getFragmentManager().findFragmentByTag(getResources().getString(R.string.artist)));
-                ft.add(R.id.fragment, f1, "sba");
+            Bundle bundl = new Bundle();
+            bundl.putString("artist", arrayList.get(getPosition(adapterArtist.getID(position))).getName());
+            bundl.putString("image", arrayList.get(getPosition(adapterArtist.getID(position))).getImage());
+            f1.setArguments(bundl);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            ft.hide(getFragmentManager().findFragmentByTag(getResources().getString(R.string.artist)));
+            ft.add(R.id.fragment, f1, "sba");
 //                ft.replace(R.id.fragment, f1, "sba");
-                ft.addToBackStack("sba");
-                ft.commit();
-            }
+            ft.addToBackStack("sba");
+            ft.commit();
         }));
 
         setHasOptionsMenu(true);
@@ -136,7 +133,7 @@ public class FragmentArtist extends Fragment {
 
                 JSONObject mainJson = new JSONObject(json);
                 JSONArray jsonArray = mainJson.getJSONArray(Constant.TAG_ROOT);
-                JSONObject objJson = null;
+                JSONObject objJson;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     objJson = jsonArray.getJSONObject(i);
 

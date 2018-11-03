@@ -134,7 +134,7 @@ public class FragmentCat extends Fragment {
 
                 JSONObject mainJson = new JSONObject(json);
                 JSONArray jsonArray = mainJson.getJSONArray(Constant.TAG_ROOT);
-                JSONObject objJson = null;
+                JSONObject objJson;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     objJson = jsonArray.getJSONObject(i);
 

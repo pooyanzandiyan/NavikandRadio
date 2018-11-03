@@ -159,10 +159,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        View headerView = navigationView.getHeaderView(0);
-       // navigationView.getBackground().setColorFilter(0x80000000, PorterDuff.Mode.MULTIPLY);
-       // headerView.getBackground().setColorFilter(0x80000000, PorterDuff.Mode.MULTIPLY);
         navigationView.getBackground().setAlpha(100);
 
         FragmentHome f1 = new FragmentHome();
@@ -174,7 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                Constant.isScrolled = true;
             }
 
             @Override
@@ -234,7 +229,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         slideUp.setInterpolator(new OvershootInterpolator(1));
         slideUp.addSlideListener((SlideUp.Listener.Visibility) visibility -> {
             if (visibility == View.VISIBLE) {
-//                    txt_songDesc.setText(Constant.arrayList_play.get(Constant.playPos).getDescription());
                 touchDesc();
                 mLayout.setTouchEnabled(false);
             } else {
@@ -330,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_share) {
             Intent ishare = new Intent(Intent.ACTION_SEND);
             ishare.setType("text/plain");
-            ishare.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.app_name) + " - http://play.google.com/store/apps/details?id=" + getPackageName());
+            ishare.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.app_name) + " - http://navikand.kdz.ir/navikandApp.apk");
             startActivity(ishare);
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
@@ -393,7 +387,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         WebView webview = dialog.findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
-//		webview.loadUrl("file:///android_asset/privacy.html");
         String mimeType = "text/html;charset=UTF-8";
         String encoding = "utf-8";
 
@@ -457,7 +450,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TypedValue typedvaluecoloraccent = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorAccent, typedvaluecoloraccent, true);
-        final int coloraccent = typedvaluecoloraccent.data;
         seekBar.setProgress(0);
 
 //        audio_progress.setOnValueChangedListener(this);
@@ -488,26 +480,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         slidepanelchildtwo_topviewone.setVisibility(View.VISIBLE);
         slidepanelchildtwo_topviewtwo.setVisibility(View.INVISIBLE);
 
-        slidepanelchildtwo_topviewone.setOnClickListener(new View.OnClickListener() {
+        slidepanelchildtwo_topviewone.setOnClickListener(v -> mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED));
 
-            @Override
-            public void onClick(View v) {
-                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-
+        slidepanelchildtwo_topviewtwo.setOnClickListener(v -> {
+            if (!slideUp.isVisible()) {
+                mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
+            } else {
+                slideUp.toggle();
             }
-        });
 
-        slidepanelchildtwo_topviewtwo.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if (!slideUp.isVisible()) {
-                    mLayout.setPanelState(SlidingUpPanelLayout.PanelState.COLLAPSED);
-                } else {
-                    slideUp.toggle();
-                }
-
-            }
         });
 
         findViewById(R.id.bottombar_play).setOnClickListener(this);
@@ -690,10 +671,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Runnable run = () -> seekUpdation();
 
     public void seekUpdation() {
-//        seekBar.setMax(100);
         seekBar.setProgress(JsonUtils.getProgressPercentage(Constant.exoPlayer.getCurrentPosition(), JsonUtils.calculateTime(Constant.arrayList_play.get(Constant.playPos).getDuration())));
         txt_duration.setText(JsonUtils.milliSecondsToTimer(Constant.exoPlayer.getCurrentPosition()));
-        //Log.e("duration",""+JsonUtils.milliSecondsToTimer(Constant.exoPlayer.getCurrentPosition()));
+        
         seekBar.setSecondaryProgress(Constant.exoPlayer.getBufferedPercentage());
         if (Constant.isPlaying && Constant.isAppOpen) {
             seekHandler.postDelayed(run, 500);
@@ -1004,7 +984,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 JSONObject mainJson = new JSONObject(json);
                 JSONArray jsonArray = mainJson.getJSONArray(Constant.TAG_ROOT);
-                JSONObject objJson = null;
+                JSONObject objJson;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     objJson = jsonArray.getJSONObject(i);
 

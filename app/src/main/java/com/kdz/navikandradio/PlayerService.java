@@ -54,11 +54,8 @@ public class PlayerService extends IntentService implements MediaPlayer.OnPrepar
     public static final String ACTION_SKIP = "com.apps.navikandradio.action.SKIP";
     public static final String ACTION_REWIND = "com.apps.navikandradio.action.REWIND";
     public static final String ACTION_NOTI_PLAY = "com.apps.navikandradio.action.NOTI_PLAY";
-    public static final String ACTION_APP_OPEN = "com.apps.navikandradio.action.APP_OPEN";
-
-    private static final int BUFFER_SEGMENT_SIZE = 64 * 1024;
-    private static final int BUFFER_SEGMENT_COUNT = 256;
-//    MediaPlayer mediaPlayer;
+    
+    //    MediaPlayer mediaPlayer;
     TrackSelector trackSelector;
     NotificationCompat.Builder notification;
     RemoteViews bigViews, smallViews;
@@ -198,16 +195,7 @@ public class PlayerService extends IntentService implements MediaPlayer.OnPrepar
         playAudio();
         showNotification();
     }
-
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
-
+    
     @Override
     public void onPrepared(MediaPlayer mediaPlayer) {
         setBuffer(false);

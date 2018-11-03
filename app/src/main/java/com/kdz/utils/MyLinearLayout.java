@@ -8,8 +8,7 @@ import android.widget.RelativeLayout;
 
 
 public class MyLinearLayout  extends RelativeLayout {
-    private float scale = 1.0f;
-
+    
     public MyLinearLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

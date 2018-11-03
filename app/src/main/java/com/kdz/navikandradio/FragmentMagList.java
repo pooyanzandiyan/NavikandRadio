@@ -172,7 +172,7 @@ public class FragmentMagList extends Fragment {
 
                 JSONObject mainJson = new JSONObject(json);
                 JSONArray jsonArray = mainJson.getJSONArray(Constant.TAG_ROOT);
-                JSONObject objJson = null;
+                JSONObject objJson;
                 for (int i = 0; i < jsonArray.length(); i++) {
                     objJson = jsonArray.getJSONObject(i);
 
@@ -210,18 +210,7 @@ public class FragmentMagList extends Fragment {
             super.onPostExecute(s);
         }
     }
-
-    private int getPosition(String id) {
-        int count = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (id.equals(arrayList.get(i).getCategoryId())) {
-                count = i;
-                break;
-            }
-        }
-        return count;
-    }
-
+    
     @Override
     public void onResume() {
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(getResources().getString(R.string.category));
@@ -238,17 +227,6 @@ class magazineAdapter {
         this.mag_pdf_url = mag_pdf_url;
         this.mag_id = mag_id;
     }
-
-    public String getMag_name() {
-        return mag_name;
-    }
-
-
-    public String getMag_pdf_url() {
-        return mag_pdf_url;
-    }
-
-    public String getMag_id() {
-        return mag_id;
-    }
+    
+    
 }

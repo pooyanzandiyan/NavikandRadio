@@ -39,7 +39,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         boolean dbExist = checkDataBase();
         //------------------------------------------------------------
-        PackageInfo pinfo = null;
         if (!dbExist) {
             getReadableDatabase();
             copyDataBase();

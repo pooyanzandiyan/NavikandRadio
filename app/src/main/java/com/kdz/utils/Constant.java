@@ -12,8 +12,6 @@ import java.util.ArrayList;
 public class Constant implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	//public static String SERVER_URL="http://www.viaviweb.in/envato/cc/online_mp3_demo/";
 		public static String SERVER_URL="http://navikandApp.kdz.ir/";
 
 	public static final String URL_LATEST = SERVER_URL + "api.php?latest";
@@ -67,13 +65,11 @@ public class Constant implements Serializable {
 	public static Boolean isRepeat = false, isSuffle = false, isPlaying = false, isFav = false, isAppFirst = true,
 			isPlayed = false, isFromNoti = false, isFromPush = false, isBackStack = false, isAppOpen = false, isOnline = true;
 	public static long currentProgress = 0;
-	public static long secondaryProgress = 0;
 	public static Context context;
 	public static int volume = 25;
 	public static String frag = "", pushID = "", backStackPage = "";
 
 	public static String loadedSongPage = "";
 	public static int adCount = 0;
-	public static int adDisplay = 2;
-
+	
 }

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import com.kdz.adapter.AdapterCat;
 import com.kdz.item.ItemCat;
 import com.kdz.utils.JsonUtils;
 import com.kdz.utils.ZProgressHUD;
@@ -27,7 +26,6 @@ import java.util.ArrayList;
 public class FragmentMag extends Fragment {
     PDFView pdfView;
     ArrayList<ItemCat> arrayList;
-    AdapterCat adapterCat;
     ZProgressHUD progressHUD;
     GridLayoutManager gridLayoutManager;
     String pdf_url;

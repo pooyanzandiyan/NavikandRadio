@@ -205,7 +205,7 @@ public class JsonUtils {
 	}
 
 	public static int getProgressPercentage(long currentDuration, long totalDuration){
-		Double percentage = (double) 0;
+		Double percentage;
 
 		long currentSeconds = (int) (currentDuration / 1000);
 		long totalSeconds = (int) (totalDuration / 1000);
@@ -237,7 +237,7 @@ public class JsonUtils {
 	 * */
 	public int progressToTimer(int progress, int totalDuration) {
 		int currentDuration = 0;
-		totalDuration = (int) (totalDuration / 1000);
+		totalDuration = totalDuration / 1000;
 		currentDuration = (int) ((((double)progress) / 100) * totalDuration);
 
 		// return current duration in milliseconds
